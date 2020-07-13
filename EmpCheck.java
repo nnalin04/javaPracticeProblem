@@ -4,12 +4,14 @@
 public class EmpCheck{ 
 
 	private static final int IS_PRESENT=1;
+	private static final int IS_FULL_TIME=1;
 	
 	public static void main(String [] args){
 		// Calling function
 		final boolean isPresent = empCheck();
 		if(isPresent){
-			final double wage = calulateWage(20, 8);
+			final int empWorkHrs = empWorkHours();			
+			final double wage = calulateWage(20, empWorkHrs);
 			System.out.println("Employee is Present ==>");
 			System.out.println("Total Employee wage is : "+ wage);
 		}else{
@@ -22,9 +24,20 @@ public class EmpCheck{
 	 * Check employee
 	 * @return true if employee present otherwise false.
 	 */
-	public static boolean empCheck(){
-		
+	public static boolean empCheck(){		
 		return IS_PRESENT == Math.floor(Math.random() * 10) % 2;
+	}
+
+	/**
+	 * Check employee Working Hours
+	 * @return numbers of hrs the employ worked.
+	 */
+	public static int empWorkHours(){
+		if(IS_FULL_TIME == Math.floor(Math.random() * 10) % 2){
+			return 8;
+		}else{
+			return 4;
+		}
 	}
 
 	/**
