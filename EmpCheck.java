@@ -35,6 +35,7 @@ public class EmpCheck {
 				System.out.println("Total number of days Employee worked : " + countDay);
 				System.out.println("Total number of hours Employee worked : " + totalHrs);
 				System.out.println("Total Employee wage is :" + totalWage);
+
 			}
 			System.out.println();
 		}
