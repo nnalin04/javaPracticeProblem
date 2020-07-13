@@ -28,6 +28,6 @@ public class Charge {
         Charge c2 = new Charge(0.13, 0.94, 81.9);
         double v1 = c1.potentialAt(x, y);
         double v2 = c2.potentialAt(x, y);
-        StdOut.printf("%.2e\n", (v1 + v2));
+        System.out.println("%.2e\n" + "," + (v1 + v2));
     }
 }
