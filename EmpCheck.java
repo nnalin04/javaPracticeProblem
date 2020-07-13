@@ -7,20 +7,31 @@ public class EmpCheck {
 
 	public static void main(final String[] args) {
 		// Calling function
-		final boolean isPresent = empCheck();
-		if (isPresent) {
-			final int empWorkHrs = empWorkHours();
-			final double wage = calulateWage(20, empWorkHrs);
-			System.out.println("Employee is Present ==>");
-			if (empWorkHrs == 8) {
-				System.out.println("Employee is working FullTime ==>");
+
+		int count = 0;
+		double totalWage = 0;
+		while (count < 20) {
+			final boolean isPresent = empCheck();
+			if (isPresent) {
+				// Calling function
+				final int empWorkHrs = empWorkHours();
+				// Calling function
+				final double wage = calulateWage(20, empWorkHrs);
+				System.out.println("Employee is Present ==>");
+				if (empWorkHrs == 8) {
+					System.out.println("Employee is working FullTime ==>");
+				} else {
+					System.out.println("Employee is working HalfTime ==>");
+				}
+				count++;
+				System.out.println("Total number of days Employee worked : " + count);
+				totalWage += wage;
+				System.out.println("Total Employee wage is : " + totalWage);
 			} else {
-				System.out.println("Employee is working HalfTime ==>");
+				System.out.println("Employee is absent ==>");
+				System.out.println("Total Employee wage is : 0.0");
 			}
-			System.out.println("Total Employee wage is : " + wage);
-		} else {
-			System.out.println("Employee is absent ==>");
-			System.out.println("Total Employee wage is : 0.0");
+			System.out.println();
 		}
 	}
 
