@@ -92,30 +92,41 @@ public class EmpCheck {
 		double totalWage = 0;
 
 		while (countDay <= maxDays && totalHrs <= maxHours) {
+
 			final boolean isPresent = empCheck();
+
 			if (isPresent) {
+
 				// Calling function
 				final int empWorkHrs = empWorkHours(fullTime, halfTime);
+				
 				totalHrs += empWorkHrs;
+
 				// Calling function
 				final double wage = calulateWage(perHrsWage, empWorkHrs);
+
 				System.out.println("Employee is Present ==>");
+				
 				if (empWorkHrs == 8) {
 					System.out.println("Employee is working FullTime ==>");
 				} else {
 					System.out.println("Employee is working HalfTime ==>");
 				}
+
 				System.out.println("Total number of days Employee worked : " + countDay);
 				System.out.println("Total number of hours Employee worked : " + totalHrs);
 				totalWage += wage;
 				System.out.println("Total Employee wage is : " + totalWage);
+
 			} else {
+
 				System.out.println("Employee is absent ==>");
 				System.out.println("Total number of days Employee worked : " + countDay);
 				System.out.println("Total number of hours Employee worked : " + totalHrs);
 				System.out.println("Total Employee wage is :" + totalWage);
 
 			}
+
 			countDay++;
 			System.out.println();
 		}
