@@ -7,7 +7,7 @@ public class EmpCheck {
 
 	private static final int IS_PRESENT = 1;
 
-	public static void main(final String[] args) {
+	public static void main(String[] args) {
 		// Calling function
 		final Scanner sc = new Scanner(System.in);
 
@@ -51,7 +51,8 @@ public class EmpCheck {
 	 * 
 	 * @return numbers of hrs the employ worked.
 	 */
-	public static int empWorkHours(int fullTime, int halfTime) {
+	public static int empWorkHours(final int fullTime, final int halfTime) {
+		
 		final double timing = Math.floor(Math.random() * 10) % 2;
 		final int value = (int) timing;
 
@@ -85,7 +86,8 @@ public class EmpCheck {
 	 * @param fullTime   number of hours employ have to work for FULL-TIME.
 	 * @param halfTime   number of hours employ have to work for HALF-TIME.
 	 */
-	public static void empWage(int maxDays, int maxHours, int perHrsWage, int fullTime, int halfTime) {
+	public static void empWage(final int maxDays, final int maxHours, final int perHrsWage, final int fullTime,
+			final int halfTime) {
 
 		int countDay = 1;
 		int totalHrs = 0;
@@ -107,7 +109,7 @@ public class EmpCheck {
 
 				System.out.println("Employee is Present ==>");
 				
-				if (empWorkHrs == 8) {
+				if (empWorkHrs == fullTime) {
 					System.out.println("Employee is working FullTime ==>");
 				} else {
 					System.out.println("Employee is working HalfTime ==>");
