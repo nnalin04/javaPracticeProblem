@@ -23,16 +23,8 @@ public class EmpCheck {
 		// taking input for wage per hours
 		final int perHrsWage = sc.nextInt();
 
-		System.out.println("Enter the FULL-TIME hOURS");
-		// taking input for FULL-TIME
-		final int fullTime = sc.nextInt();
-
-		System.out.println("Enter the HALF-TIME hOURS");
-		// taking input for HALF-TIME
-		final int halfTime = sc.nextInt();
-
 		// Calling function
-		empWage(maxDays, maxHours, perHrsWage, fullTime, halfTime);
+		empWage(maxDays, maxHours, perHrsWage);
 
 		sc.close();
 	}
@@ -51,16 +43,16 @@ public class EmpCheck {
 	 * 
 	 * @return numbers of hrs the employ worked.
 	 */
-	public static int empWorkHours(final int fullTime, final int halfTime) {
-		
+	public static int empWorkHours() {
+
 		final double timing = Math.floor(Math.random() * 10) % 2;
 		final int value = (int) timing;
 
 		switch (value) {
 			case 1:
-				return fullTime;
+				return 8;
 			case 0:
-				return halfTime;
+				return 4;
 			default:
 				return 0;
 		}
@@ -83,11 +75,8 @@ public class EmpCheck {
 	 * @param maxDays    total number of days for the Employ to Work.
 	 * @param maxHours   total number of hours for the Employ to Work.
 	 * @param perHrsWage per hours wage for the employ.
-	 * @param fullTime   number of hours employ have to work for FULL-TIME.
-	 * @param halfTime   number of hours employ have to work for HALF-TIME.
 	 */
-	public static void empWage(final int maxDays, final int maxHours, final int perHrsWage, final int fullTime,
-			final int halfTime) {
+	public static void empWage(final int maxDays, final int maxHours, final int perHrsWage) {
 
 		int countDay = 1;
 		int totalHrs = 0;
@@ -100,16 +89,16 @@ public class EmpCheck {
 			if (isPresent) {
 
 				// Calling function
-				final int empWorkHrs = empWorkHours(fullTime, halfTime);
-				
+				final int empWorkHrs = empWorkHours();
+
 				totalHrs += empWorkHrs;
 
 				// Calling function
 				final double wage = calulateWage(perHrsWage, empWorkHrs);
 
 				System.out.println("Employee is Present ==>");
-				
-				if (empWorkHrs == fullTime) {
+
+				if (empWorkHrs == 8) {
 					System.out.println("Employee is working FullTime ==>");
 				} else {
 					System.out.println("Employee is working HalfTime ==>");
