@@ -1,13 +1,33 @@
-public class EmpCheck {
+public class EmpCheck {	
 
+	public static void main(final String[] args) {
+		final EmpWageBuilderArray companyWage = new EmpWageBuilderArray();
+		// For Apple
+		companyWage.addCpompnyEmployWage("Apple", 20, 20, 100);
+		// For Samsung
+		companyWage.addCpompnyEmployWage("samsung", 22, 30, 120);
+		
+		companyWage.printEmpWage();
+
+	}	
+}
+
+class EmpWageBuilderArray {	
 	private static final int IS_PART_TIME = 1;
 	private static final int IS_FULL_TIME = 2;
 
+	private int numOfCompany = 0;
+	private final Company[] companyWageArray;
+
+	public EmpWageBuilderArray() {
+		companyWageArray = new Company[5];
+	}
+
 	public static int computeEmpWage(final Company company) {
 		// variables
-		int empHrs = 0, totalEmpHrs = 0, totalWorkingDays = 0;
+		int empHrs = 0, totalHrs = 0, totalWorkingDays = 0;
 
-		while (totalEmpHrs <= company.getMaxHrsInMonth() && totalWorkingDays < company.getTotalWorkingDays()) {
+		while (totalHrs <= company.getMaxHrsInMonth() && totalWorkingDays < company.getTotalWorkingDays()) {
 			totalWorkingDays++;
 			final int value = (int) Math.floor(Math.random() * 10) % 3;
 			switch (value) {
@@ -21,24 +41,26 @@ public class EmpCheck {
 					empHrs = 0;
 					break;
 			}
-			totalEmpHrs += empHrs;
-			System.out.println("Day#: " + totalWorkingDays + " Emp Hrs: " + empHrs);
+			totalHrs += empHrs;
+			System.out.println("Day#: " + totalWorkingDays + " Emp Hrs: " + empHrs + " total Emp Emp Hrs: " + totalHrs);
 		}
-		return totalEmpHrs * company.getEmpRate();
+		final int totalWage = totalHrs * company.getEmpRate();
+		return totalWage;
 	}
 
-	public static void main(String[] args) {
-		// For Apple
-		final Company apple = new Company("Apple", 20, 20, 100);
-		final int totalWageApple = computeEmpWage(apple);
-		System.out.println("Total Emp wage for " + apple.getName() + ": " + totalWageApple);
-
-		// For Samsung
-		final Company samsung = new Company("samsung", 22, 30, 120);
-		final int totalWageSamSung = computeEmpWage(samsung);
-		System.out.println("Total Emp wage for " + samsung.getName() + ": " + totalWageSamSung);
+	public void printEmpWage() {
+		for(int i = 0; i < numOfCompany;i++){
+			companyWageArray[i]=Company.setToalEmpWage(EmpWageBuilderArray.computeEmpWage(companyWageArray[i]));
+			computeEmpWage(companyWageArray[i]);
+			System.out.println(companyWageArray[i]);
+		}
 	}
 
+	public void addCpompnyEmployWage(final String companyName, final int companyWage, final int workingDays,
+			final int workingHours) {
+		companyWageArray[numOfCompany] = new Company(companyName, companyWage, workingDays, workingHours);
+		numOfCompany++;
+	}
 }
 
 class Company {
@@ -50,6 +72,8 @@ class Company {
 	private int totalWorkingDays;
 
 	private int maxHrsInMonth;
+
+	private int totalEmpWage;
 
 	public Company() {
 	}
@@ -91,5 +115,14 @@ class Company {
 
 	public int getMaxHrsInMonth() {
 		return maxHrsInMonth;
+	}
+
+	public void setToalEmpWage(final int totalEmpWage) {
+		this.totalEmpWage = totalEmpWage;
+	}
+
+	@Override
+	public String toString() {
+		return "total Employ wage for the company " + name + " is " + totalEmpWage;
 	}
 }
