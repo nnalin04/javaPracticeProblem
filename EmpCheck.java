@@ -31,7 +31,7 @@ public class EmpCheck implements IComputeEmpWage {
 		companyWage.computEmpWage();
 
 		System.out.println(companyWageMap.keySet());
-		System.out.println("Emter any Company Name to get the total Wage of the company");
+		System.out.println("Emter any Company Name to get the total Wage of the Company");
 		String nameOfCompany = sc.nextLine();
 		System.out.println("Total wage for " + nameOfCompany + " Company: " + companyWage.getTotalWage(nameOfCompany));
 		sc.close();
