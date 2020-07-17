@@ -1,29 +1,56 @@
-public class EmpCheck {
+import java.util.*;
+
+
+interface IComputeEmpWage{
+	void addCpompnyEmployWage(final String companyName, final int companyWage, final int workingDays,
+			final int workingHours);
+	void computEmpWage();
+	int getTotalWage(String companyName);
+}
+
+public class EmpCheck implements IComputeEmpWage{
 
 	public static void main(final String[] args) {
-		final EmpWageBuilderArray companyWage = new EmpWageBuilderArray();
+		IComputeEmpWage companyWage = new EmpCheck();
 		// For Apple
-		companyWage.addCpompnyEmployWage("Apple", 20, 20, 100);
+		companyWage.addCpompnyEmployWage( "Apple", 20, 20, 100);
 		// For Samsung
 		companyWage.addCpompnyEmployWage("samsung", 22, 30, 120);
 
-		companyWage.printEmpWage();
-
+		companyWage.computEmpWage();
+		System.out.println("Total wage for Apple Company: "+ EmpCheck.getTotalWage("Apple"));
 	}
-}
 
-class EmpWageBuilderArray {
 	private static final int IS_PART_TIME = 1;
 	private static final int IS_FULL_TIME = 2;
 
-	private int numOfCompany = 0;
-	private final Company[] companyWageArray;
+	
+	private List<Company> companyWageList;
+	private Map<String,Company> companyWageMap;
 
-	public EmpWageBuilderArray() {
-		companyWageArray = new Company[5];
+	public EmpCheck(){
+		companyWageList = new ArrayList<>();
+		companyWageMap = new HashMap<>();
 	}
 
-	public static int computeEmpWage(final Company company) {
+	@Override
+	public void addCpompnyEmployWage(final String companyName, final int companyWage, final int workingDays,
+			final int workingHours) {
+		Company company = new Company(companyName, companyWage, workingDays, workingHours);
+
+		companyWageList.add(company);
+		companyWageMap.put(companyName,company);
+	}
+
+	@Override
+	public void computEmpWage(){
+		for (int i = 0; i < companyWageList.size(); i++) {
+			Company company = companyWageList.get(i);
+			company.setTotalEmpWage(this.computeEmpWage(company));
+		}
+	}
+
+	public int computeEmpWage(final Company company) {
 		// variables
 		int empHrs = 0, totalHrs = 0, totalWorkingDays = 0;
 
@@ -45,23 +72,18 @@ class EmpWageBuilderArray {
 			System.out.println("Day#: " + totalWorkingDays + " Emp Hrs: " + empHrs + " total Emp Emp Hrs: " + totalHrs);
 		}
 		final int totalWage = totalHrs * company.getEmpRate();
-
 		return totalWage;
 	}
 
-	public void printEmpWage() {
-		for (int i = 0; i < numOfCompany; i++) {
-			companyWageArray[i].setTotalEmpWage(EmpWageBuilderArray.computeEmpWage(companyWageArray[i]));
-			System.out.println(companyWageArray[i]);
-		}
+	public int getTotalWage(String companyName){
+		return companyWageMap.get(companyName).totalWage;
 	}
 
-	public void addCpompnyEmployWage(final String companyName, final int companyWage, final int workingDays,
-			final int workingHours) {
-		companyWageArray[numOfCompany] = new Company(companyName, companyWage, workingDays, workingHours);
-		numOfCompany++;
-	}
+	
+
 }
+
+
 
 class Company {
 
