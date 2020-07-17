@@ -1,4 +1,4 @@
-public class EmpCheck {	
+public class EmpCheck {
 
 	public static void main(final String[] args) {
 		final EmpWageBuilderArray companyWage = new EmpWageBuilderArray();
@@ -6,13 +6,13 @@ public class EmpCheck {
 		companyWage.addCpompnyEmployWage("Apple", 20, 20, 100);
 		// For Samsung
 		companyWage.addCpompnyEmployWage("samsung", 22, 30, 120);
-		
+
 		companyWage.printEmpWage();
 
-	}	
+	}
 }
 
-class EmpWageBuilderArray {	
+class EmpWageBuilderArray {
 	private static final int IS_PART_TIME = 1;
 	private static final int IS_FULL_TIME = 2;
 
@@ -49,9 +49,8 @@ class EmpWageBuilderArray {
 	}
 
 	public void printEmpWage() {
-		for(int i = 0; i < numOfCompany;i++){
-			companyWageArray[i]=Company.setToalEmpWage(EmpWageBuilderArray.computeEmpWage(companyWageArray[i]));
-			computeEmpWage(companyWageArray[i]);
+		for (int i = 0; i < numOfCompany; i++) {
+			companyWageArray[i].setTotalEmpWage(EmpWageBuilderArray.computeEmpWage(companyWageArray[i]));
 			System.out.println(companyWageArray[i]);
 		}
 	}
@@ -117,8 +116,12 @@ class Company {
 		return maxHrsInMonth;
 	}
 
-	public void setToalEmpWage(final int totalEmpWage) {
+	public void setTotalEmpWage(final int totalEmpWage) {
 		this.totalEmpWage = totalEmpWage;
+	}
+
+	public int getTotalEmpWage() {
+		return totalEmpWage;
 	}
 
 	@Override
