@@ -31,7 +31,7 @@ public class EmpCheck implements IComputeEmpWage {
 		companyWage.computEmpWage();
 
 		System.out.println(companyWageMap.keySet());
-		System.out.println("Emter any Company Name to get the total Wage of the company");
+		System.out.println("Emter any Company Name to get the total Wage of the Cmpany");
 		String nameOfCompany = sc.nextLine();
 		System.out.println("Total wage for " + nameOfCompany + " Company: " + companyWage.getTotalWage(nameOfCompany));
 		sc.close();
@@ -78,7 +78,7 @@ public class EmpCheck implements IComputeEmpWage {
 					break;
 			}
 			totalHrs += empHrs;
-			System.out.println("Total number Day Worked => " + totalWorkingDays);
+			System.out.println("Total number Days Worked => " + totalWorkingDays);
 			System.out.println("Number of Hours Worked today => " + empHrs);
 			System.out.println("total Emp Hours => " + totalHrs);
 			System.out.println("Total Wage till today => " + totalHrs * company.getEmpRate());
