@@ -39,7 +39,8 @@ public class EmpCheck implements IComputeEmpWage {
 
 	@Override
 	public int getTotalWage(String companyName) {
-		return companyWageMap.get(companyName).getTotalEmpWage();
+		Company company = companyWageMap.get(companyName);
+		return company.getTotalEmpWage();
 	}
 
 	@Override
